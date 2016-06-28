@@ -19,6 +19,7 @@ _Applies to: Word 2016, Word for iPad_
 | text | string | Gets the text of the content control. Read-only. |
 | title | string | Gets or sets the title for a content control. |
 | geoffrey | string | Gets something |
+| Juan | string | Let’s try again |
 
 _See property access [examples.](#property-access-examples)_
 
@@ -76,50 +77,37 @@ void
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the content controls collection.
-
 contentControls.load('text');
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log("There isn't a content control in this document.");
 
 } else {
-
 // Queue a command to clear the contents of the first content control.
-
 contentControls.items[0].clear();
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 console.log('Content control cleared of contents.');
 
 });
 
         }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -147,52 +135,38 @@ void
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the content controls collection.
-
  contentControls.load('text');
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log("There isn't a content control in this document.");
 
 } else {
-
 // Queue a command to delete the first content control. The
-
 // contents will remain in the document.
-
 contentControls.items[0].delete(true);
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 console.log('Content control cleared of contents.');
 
 });
 
         }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -218,9 +192,7 @@ string
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection that contains a specific tag.
-
 var contentControlsWithTag = context.document.contentControls.getByTag('Customer-Address');
 
 // Queue a command to load the tag property for all of content controls. 
@@ -228,43 +200,31 @@ var contentControlsWithTag = context.document.contentControls.getByTag('Customer
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControlsWithTag.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to get the HTML contents of the first content control.
-
 var html = contentControlsWithTag.items[0].getHtml();
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
 console.log('Content control HTML: ' + html.value);
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -290,9 +250,7 @@ string
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -300,43 +258,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to get the OOXML contents of the first content control.
-
 var ooxml = contentControls.items[0].getOoxml();
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
 console.log('Content control OOXML: ' + ooxml.value);
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -369,9 +315,7 @@ With the exception of line breaks, you can not insert a break into objects conta
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a commmand to load the id property for all of content controls. 
@@ -380,41 +324,31 @@ var contentControls = context.document.contentControls;
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion. We now will have 
     // access to the content control collection.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to insert a page break after the first content control. 
             contentControls.items[0].insertBreak('page', "After");
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion. 
             return context.sync()
-
 .then(function () {
-
 console.log('Inserted a page break after the first content control.');
 
             });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -462,9 +396,7 @@ Inserts HTML into the content control at the specified location. The insertLocat
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -472,43 +404,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to put HTML into the contents of the first content control.
-
 contentControls.items[0].insertHtml('**HTML content inserted into the content control.**', 'Start');
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
 console.log('Inserted HTML in the first content control.');
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
   if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -556,9 +476,7 @@ Inserts OOXML or wordProcessingML into the content control at the specified loca
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -566,43 +484,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
  return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to put OOXML into the contents of the first content control.
-
 contentControls.items[0].insertOoxml("This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.", "End");
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
 console.log('Inserted OOXML in the first content control.');
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
      console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -635,9 +541,7 @@ Inserts a paragraph at the specified location. The insertLocation value can be '
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -645,42 +549,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to insert a paragraph after the first content control. 
             contentControls.items[0].insertParagraph('Text of the inserted paragraph.', 'After');
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
     .then(function () {
-
 console.log('Inserted a paragraph after the first content control.');
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -709,9 +602,7 @@ Inserts text into the content control at the specified location. The insertLocat
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -719,42 +610,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to replace text in the first content control. 
             contentControls.items[0].insertText('Replaced text in the first content control.', 'Replace');
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
 console.log('Replaced text in the first content control.');
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -784,13 +664,10 @@ void
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy range object for the current selection.
-
 var range = context.document.getSelection();
 
 // Queue a commmand to create the content control.
-
 var myContentControl = range.insertContentControl();
 
 myContentControl.tag = 'Customer-Address';
@@ -806,25 +683,20 @@ myContentControl.cannotEdit = true;
 myContentControl.appearance = 'tags';
 
 // Queue a command to load the id property for the content control you created.
-
 context.load(myContentControl, 'id');
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
  return context.sync().then(function () {
-
 console.log('Created content control with id: ' + myContentControl.id);
 
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -871,9 +743,7 @@ void
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -881,43 +751,31 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to select the first content control.
-
 contentControls.items[0].select();
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
 .then(function () {
-
        console.log('Selected the first content control.');
 
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -929,9 +787,7 @@ console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 <pre>// Run a batch operation against the Word object model.
 Word.run(function (context) {
-
 // Create a proxy object for the content controls collection.
-
 var contentControls = context.document.contentControls;
 
 // Queue a command to load the id property for all of the content controls. 
@@ -939,56 +795,35 @@ var contentControls = context.document.contentControls;
 
 // Synchronize the document state by executing the queued commands, 
     // and return a promise to indicate task completion.
-
 return context.sync().then(function () {
-
 if (contentControls.items.length === 0) {
-
 console.log('No content control found.');
 
 }
-
 else {
-
 // Queue a command to load the properties on the first content control. 
             contentControls.items[0].load( 
 
 'appearance,' +
-
 'cannotDelete,' +
-
 'cannotEdit,' +
-
 'color,' +
-
 'id,' +
-
                                    'placeHolderText,' +
-
 'removeWhenEdited,' +
-
 'title,' +
-
 'text,' +
-
                    'type,' +
-
 'style,' +
-
 'tag,' +
-
 'font/size,' +
-
 'font/name,' +
                                             'font/color');
 
 // Synchronize the document state by executing the queued commands, 
             // and return a promise to indicate task completion.
-
 return context.sync()
-
             .then(function () {
-
 console.log('Property values of the first content control:' + 
                         '  
 
@@ -996,55 +831,42 @@ console.log('Property values of the first content control:' +
                         '  
 
 ----- cannotDelete: ' + contentControls.items[0].cannotDelete +
-
 '  
 
 ----- cannotEdit: ' + contentControls.items[0].cannotEdit +
-
 '  
 
 ----- color: ' + contentControls.items[0].color +
-
 '  
 
 ----- id: ' + contentControls.items[0].id +
-
 '  
 
 ----- placeHolderText: ' + contentControls.items[0].placeholderText +
-
 '  
 
 ----- removeWhenEdited: ' + contentControls.items[0].removeWhenEdited +
-
 '  
 
 ----- title: ' + contentControls.items[0].title +
-
 '  
 
 ----- text: ' + contentControls.items[0].text +
-
 '  
 
 ----- type: ' + contentControls.items[0].type +
-
 '  
 
 ----- style: ' + contentControls.items[0].style +
-
 '  
 
 ----- tag: ' + contentControls.items[0].tag +
-
 '  
 
 ----- font size: ' + contentControls.items[0].font.size +
-
 '  
 
 ----- font name: ' + contentControls.items[0].font.name +
-
 '  
 
 ----- font color: ' + contentControls.items[0].font.color);
@@ -1052,16 +874,13 @@ console.log('Property values of the first content control:' +
 });
 
 }
-
 });
 
 })
 .catch(function (error) {
-
 console.log('Error: ' + JSON.stringify(error));
 
 if (error instanceof OfficeExtension.Error) {
-
 console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 }
@@ -1069,4 +888,4 @@ console.log('Debug info: ' + JSON.stringify(error.debugInfo));
 
 ## Support details
 
-# Use the [requirement set](https://msdn.microsoft.com/EN-US/library/office/mt590206.aspx) in run time checks to make sure your application is supported by the host version of Word. For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://msdn.microsoft.com/EN-US/library/office/dn833104.aspx).
+Use the [requirement set](https://msdn.microsoft.com/EN-US/library/office/mt590206.aspx) in run time checks to make sure your application is supported by the host version of Word. For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://msdn.microsoft.com/EN-US/library/office/dn833104.aspx).
