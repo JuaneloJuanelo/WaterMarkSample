@@ -19,6 +19,7 @@ _Applies to: Word 2016, Word for iPad_
 | text | string | Gets the text of the content control. Read-only. |
 | title | string | Gets or sets the title for a content control. |
 | PropertyFOo | String | This is the description |
+| newProperty | Int | New property added in word instead of a lousy editor!!!! J |
 
 _See property access [examples.](#property-access-examples)_
 
