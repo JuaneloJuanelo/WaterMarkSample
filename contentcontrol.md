@@ -18,8 +18,6 @@ _Applies to: Word 2016, Word for iPad_
 | tag | string | Gets or sets a tag to identify a content control. The [Silly stories](https://aka.ms/sillystorywordaddin) add-in sample shows how you can use the **tag** property. |
 | text | string | Gets the text of the content control. Read-only. |
 | title | string | Gets or sets the title for a content control. |
-| PropertyFOo | String | This is the description |
-| newProperty | Int | New property added in word instead of a lousy editor!!!! J |
 
 _See property access [examples.](#property-access-examples)_
 
