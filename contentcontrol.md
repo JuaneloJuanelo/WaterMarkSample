@@ -17,7 +17,8 @@ _Applies to: Word 2016, Word for iPad_
 | style | string | Gets or sets the style used for the content control. This is the name of the pre-installed or custom style. |
 | tag | string | Gets or sets a tag to identify a content control. The [Silly stories](https://aka.ms/sillystorywordaddin) add-in sample shows how you can use the **tag** property. |
 | text | string | Gets the text of the content control. Read-only. |
-| title | string | Gets or sets the title for a content control. |
+| Title | string | Gets or sets the title for a content control. |
+| New Property | Bool | This is a new Property added by Juan |
 
 _See property access [examples.](#property-access-examples)_
 
